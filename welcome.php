@@ -30,6 +30,13 @@ us">
 <a class="navbar-brand" href="/gallery.php">Gallery<span class="sr-only">(current)</span></a>
 <a class="navbar-brand" href="/up.php">Upload</a>  
 </div>
-</nav>
+</nav> 
+<div class="jumbotron">
+        <h1>Welcome</h1>
+        <p>This is Photo App</p>
+        <p><a class="btn btn-primary btn-lg" href="/gallery.php" role="button">Gallery</a></p>
+       <p><a class="btn btn-primary btn-lg" href="/up.php" role="button">Upload</a></p>
+</div>
+
 <h1
 

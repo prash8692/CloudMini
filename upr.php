@@ -11,7 +11,7 @@ $client = RdsClient::factory(array(
 ));
 $s3 = new Aws\S3\S3Client(['version' => 'latest', 'region' => 'us-west-2']);
 $result = $client->describeDBInstances(array(
-        'DBInstanceIdentifier' => 'itmo544-krose1-mysqldb',
+        'DBInstanceIdentifier' => 'itmo544-pboov',
 ));
 $endpoint = "";
 $url = "";
@@ -28,11 +28,11 @@ foreach($result['DBInstances'] as $ep)
                 }
         }
 
-$conn = mysqli_connect($url, "controller", "controllerpass", "school", "3306") or die("Error " . mysqli_error($link));
+$conn = mysqli_connect($url, "pboo", "pboopass", "miniproj", "3306") or die("Error " . mysqli_error($link));
 $name = $_FILES["fileToUpload"]["name"];
 $tmp = $_FILES['fileToUpload']['tmp_name'];
 $resultput = $s3->putObject(array(
-        'Bucket' => 'raw-kro',
+        'Bucket' => 'pboov-color',
         'Key' => $name,
         'SourceFile' => $tmp,
         'region' => 'us-west-2',
@@ -56,25 +56,21 @@ if ($checkimgformat == 'png' || $checkimgformat == 'PNG')
         }
 
 $lstoccuranceofslash = strripos($rawurl, "/") + 1;
-echo "finding the last position of the slash symbol:     " . $lstoccuranceofslash . "\n";
 $imagename = substr($rawurl, $lstoccuranceofslash, strlen($rawurl));
-echo $imagename . "\n";
 
 ImageFilter($im, IMG_FILTER_GRAYSCALE);
 $tmp = "/tmp/$imagename";
-echo "the tmp directory" . $tmp . "\n";
 
 // output and free memory
 // header('Content-type: image/png');
 
 imagepng($im, $tmp);
 imagedestroy($im);
-echo shell_exec('ls -ltr /tmp') . "\n";
 
 // $tmp="/tmp/$imagename";
 
 $resultfinalput = $s3->putObject(array(
-        'Bucket' => 'finish-kro',
+        'Bucket' => 'pboov-bw',
         'Key' => $imagename,
         'SourceFile' => $tmp,
         'region' => 'us-west-2',
@@ -158,23 +154,31 @@ li a:hover:not(.active) {
 }
 
 </style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymo
+CloudMini  gallery.php  up.php  upr.php  welcome.php
+us">
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 </head>
 <body>
 
-<ul>
-  <li><a href="/welcome.php">Home</a></li>
-  <li><a href="/gallery.php">Gallery</a></li>
-  <li><a href="/up.php">upload</a></li>
-</ul>
+<nav class="navbar navbar-inverse bg-inverse">
+<a class="navbar-brand" href="welcome.php">Photo App</a>
+<a class="navbar-brand" href="/gallery.php">Gallery<span class="sr-only">(current)</span></a>
+<a class="navbar-brand" href="/up.php">Upload</a>  
+    </nav>
 
 <div style="margin-left:25%;padding:1px 16px;height:1000px;">
 
 <form action="" method='post' enctype="multipart/form-data">
-<h1>Success!</h1>
-<br />
-<br />
-<h3>Name of the image: <?php
-echo $name; ?><h3>
+<h1>Image Successfully Uploaded</h1>
+<h3>
 <img src="<?php
 echo $imageurl; ?>" height="200" width="200">
 <br />

@@ -102,15 +102,23 @@ li a:hover:not(.active) {
     max-width:940px;
 }
 </style>
+
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymo
+CloudMini  gallery.php  up.php  upr.php  welcome.php
+us">
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 </head>
 <body>
-
-<ul>
-  <li><a href="/welcome.php">Home</a></li>
-  <li><a class="active" href="/gallery.php">Gallery</a></li>
-  
-</ul>
-
+<nav class="navbar navbar-inverse bg-inverse">
+<a class="navbar-brand" href="welcome.php">Photo App</a>
+<a class="navbar-brand" href="/gallery.php">Gallery<span class="sr-only">(current)</span></a>
+<a class="navbar-brand" href="/up.php">Upload</a>  
+    </nav>
 <div style="margin-left:25%;padding:1px 16px;height:1000px;">
 <br>
 <br>
